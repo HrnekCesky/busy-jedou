@@ -16,12 +16,13 @@ def stop(text):
         aa = item.get("areas")
         lat = item.get("lat")
         lon = item.get("lon")
+        stop_id = item.get("stop_id")
         ab = item.get("type")
     
         if str(ab) == "STOP":
             iditem = iditem + 1
             kraj = aa[1].get("name")
-            locs.append({"id": iditem, "location": name, "kraj": kraj, "lat": lat, "lon": lon, "type": ab})
+            locs.append({"id": iditem, "location": name, "kraj": kraj, "lat": lat, "lon": lon, "stop_id": stop_id, "type": ab})
     
     return locs
 
@@ -34,12 +35,14 @@ def route(place1, place2, num1, num2):
     name1 = res1[num1].get("location") + ", " + res1[num1].get("kraj")
     pos1lat = res1[num1].get("lat")
     pos1lon = res1[num1].get("lon")
-    pos1 = f"{name1}: {pos1lat}, {pos1lon} <br />"
+    id1 = res1[num1].get("stop_id")
+    pos1 = f"{name1}: {pos1lat}, {pos1lon}, {id1} <br />"
 
     res2 = stop(place2)
     name2 = res2[num2].get("location") + ", " + res2[num2].get("kraj")
     pos2lat = res2[num2].get("lat")
     pos2lon = res2[num2].get("lon")
-    pos2 = f"{name2}: {pos2lat}, {pos2lon} <br />"
+    id2 = res2[num2].get("stop_id")
+    pos2 = f"{name2}: {pos2lat}, {pos2lon}, {id2} <br />"
 
-    return f"pos1: {pos1} pos2: {pos2}"
+    return f"pos1: {pos1} pos2: {pos2},"
