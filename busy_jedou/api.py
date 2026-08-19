@@ -36,13 +36,13 @@ def route(place1, place2, num1, num2):
     pos1lat = res1[num1].get("lat")
     pos1lon = res1[num1].get("lon")
     id1 = res1[num1].get("stop_id")
-    pos1 = f"{name1}: {pos1lat}, {pos1lon}, {id1} <br />"
+    pos1 = {"name": name1, "lat": pos1lat, "lon": pos1lon, "stop_id": id1}
 
     res2 = stop(place2)
     name2 = res2[num2].get("location") + ", " + res2[num2].get("kraj")
     pos2lat = res2[num2].get("lat")
     pos2lon = res2[num2].get("lon")
     id2 = res2[num2].get("stop_id")
-    pos2 = f"{name2}: {pos2lat}, {pos2lon}, {id2} <br />"
+    pos2 = {"name": name2, "lat": pos2lat, "lon": pos2lon, "stop_id": id2}
 
-    return f"pos1: {pos1} pos2: {pos2},"
+    return {"pos1": pos1, "pos2": pos2}
