@@ -1,6 +1,7 @@
 from busy_jedou import app
 import requests
 import datetime
+from flask import request
 
 STOP_LOOKUP_BASE_URL = "https://api.transitous.org/api/v1"
 ROUTE_LOOKUP_BASE_URL = "https://api.transitous.org/api/v6"
@@ -14,9 +15,9 @@ def get_route(text):
 def get_route(place1, place2, num1, num2):
     return route(place1, place2, num1, num2)
 
-@app.route('/get/route/', methods=['POST'])
+@app.route('/get/stop/', methods=['POST'])
 def stop():
-    text = app.request.args("text")
+    text = request.args("text")
 
     response = requests.get(f"{STOP_LOOKUP_BASE_URL}/geocode", headers=HEADERS, params={"text": text, "mode": "BUS"})
 
@@ -40,10 +41,10 @@ def stop():
 
 @app.route('/get/route/', methods=['POST'])
 def route():
-    place1 = app.request.args("place1")
-    place2 = app.request.args("place2")
-    num1 = app.request.args("num1")
-    num2 = app.request.args("num2")
+    place1 = request.args("place1")
+    place2 = request.args("place2")
+    num1 = request.args("num1")
+    num2 = request.args("num2")
 
     num1 = int(num1)
     num2 = int(num2)
