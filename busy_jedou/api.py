@@ -6,22 +6,18 @@ STOP_LOOKUP_BASE_URL = "https://api.transitous.org/api/v1"
 ROUTE_LOOKUP_BASE_URL = "https://api.transitous.org/api/v6"
 HEADERS={"User-Agent": "MyTestApp/1.0"}
 
-@app.route('/get/route/', methods=['POST'])
-def get_route():
-    name = app.request.args("name")
-    return stop(name)
+@app.route('/get/stop/<text>', methods=['GET'])
+def get_route(text):
+    return stop(text)
 
-@app.route('/get/route/', methods=['POST'])
-def route():
-    place1 = app.request.args("place1")
-    place2 = app.request.args("place2")
-    num1 = app.request.args("num1")
-    num2 = app.request.args("num2")
+@app.route('/get/route/<place1>/<num1>/<place2>/<num2>', methods=['GET'])
+def get_route(place1, place2, num1, num2):
     return route(place1, place2, num1, num2)
 
+@app.route('/get/route/', methods=['POST'])
+def stop():
+    text = app.request.args("text")
 
-@app.route('/get/stop/<text>')
-def stop(text):
     response = requests.get(f"{STOP_LOOKUP_BASE_URL}/geocode", headers=HEADERS, params={"text": text, "mode": "BUS"})
 
     locations = response.json()
@@ -42,10 +38,17 @@ def stop(text):
     
     return locs
 
-@app.route('/get/route/search/<place1>/<num1>/<place2>/<num2>')
-def route(place1, place2, num1, num2):
+@app.route('/get/route/', methods=['POST'])
+def route():
+    place1 = app.request.args("place1")
+    place2 = app.request.args("place2")
+    num1 = app.request.args("num1")
+    num2 = app.request.args("num2")
+
     num1 = int(num1)
     num2 = int(num2)
+    place1 = str(place1)
+    place2 = str(place2)
 
     res1 = stop(place1)
     name1 = res1[num1].get("location") + ", " + res1[num1].get("kraj")
