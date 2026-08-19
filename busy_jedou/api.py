@@ -23,7 +23,7 @@ def stop(text):
             kraj = aa[1].get("name") if isinstance(aa, list) and len(aa) > 1 and aa[1] else None
             locs.append({"id": iditem, "location": name, "kraj": kraj, "lat": lat, "lon": lon, "type": ab})
     
-    return jsonify(locs)
+    return locs
 
 @app.route('/get/route/<place1>/<place2>')
 def route(place1, place2):
