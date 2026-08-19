@@ -26,5 +26,5 @@ def stop(text):
 
 @app.route('/get/route/<place1>/<place2>')
 def route(place1, place2):
-    place1 = 
+    return "a"
     
