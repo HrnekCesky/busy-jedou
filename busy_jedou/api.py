@@ -37,6 +37,6 @@ def route(place1, place2, num1, num2):
     name2 = res2[num2].get("location") + ", " + res2[num2].get("kraj")
     pos2lat = res2[num2].get("lat")
     pos2lon = res2[num2].get("lon")
-    pos2 = f"{name2}: {pos2lat}, {pos2lon} <br />"c
+    pos2 = f"{name2}: {pos2lat}, {pos2lon} <br />"
 
     return f"pos1: {pos1} pos2: {pos2}"
