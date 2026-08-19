@@ -43,6 +43,7 @@
     <Folder Include="busy_jedou\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="pyproject.toml" />
     <Content Include="requirements.txt" />
     <Content Include="busy_jedou\static\content\bootstrap.css" />
     <Content Include="busy_jedou\static\content\bootstrap.min.css" />
