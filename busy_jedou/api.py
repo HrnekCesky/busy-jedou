@@ -6,6 +6,20 @@ STOP_LOOKUP_BASE_URL = "https://api.transitous.org/api/v1"
 ROUTE_LOOKUP_BASE_URL = "https://api.transitous.org/api/v6"
 HEADERS={"User-Agent": "MyTestApp/1.0"}
 
+@app.route('/get/route/', methods=['POST'])
+def get_route():
+    name = app.request.args("name")
+    return stop(name)
+
+@app.route('/get/route/', methods=['POST'])
+def route():
+    place1 = app.request.args("place1")
+    place2 = app.request.args("place2")
+    num1 = app.request.args("num1")
+    num2 = app.request.args("num2")
+    return route(place1, place2, num1, num2)
+
+
 @app.route('/get/stop/<text>')
 def stop(text):
     response = requests.get(f"{STOP_LOOKUP_BASE_URL}/geocode", headers=HEADERS, params={"text": text, "mode": "BUS"})
