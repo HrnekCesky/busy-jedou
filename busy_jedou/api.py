@@ -1,12 +1,13 @@
 from busy_jedou import app
 import requests
 
-BASE_URL = "https://api.transitous.org/api/v1"
+STOP_LOOKUP_BASE_URL = "https://api.transitous.org/api/v1"
+ROUTE_LOOKUP_BASE_URL = "https://api.transitous.org/api/v6"
 HEADERS={"User-Agent": "MyTestApp/1.0"}
 
 @app.route('/get/stop/<text>')
 def stop(text):
-    response = requests.get(f"{BASE_URL}/geocode", headers=HEADERS, params={"text": text, "mode": "BUS"})
+    response = requests.get(f"{STOP_LOOKUP_BASE_URL}/geocode", headers=HEADERS, params={"text": text, "mode": "BUS"})
 
     locations = response.json()
     locs = []
@@ -45,5 +46,5 @@ def route(place1, place2, num1, num2):
     id2 = res2[num2].get("stop_id")
     pos2 = {"name": name2, "lat": pos2lat, "lon": pos2lon, "stop_id": id2}
 
-    response = requests.get(f"{BASE_URL}/routing", headers=HEADERS, params={"fromPlace": id1, "toPlace": id2})
+    response = requests.get(f"{ROUTE_LOOKUP_BASE_URL}/plan", headers=HEADERS, params={"fromPlace": id1, "toPlace": id2})
     return {"places": {"departure": pos1, "destination": pos2}, "routing": response.status_code}
