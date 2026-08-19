@@ -5,7 +5,7 @@ from flask import request
 
 STOP_LOOKUP_BASE_URL = "https://api.transitous.org/api/v1"
 ROUTE_LOOKUP_BASE_URL = "https://api.transitous.org/api/v6"
-HEADERS={"User-Agent": "MyTestApp/1.0"}
+HEADERS={"User-Agent": "busy-jedou/1.0"}
 
 @app.route('/get/stop/<text>', methods=['GET'])
 @app.route('/get/stop/<text>/', methods=['GET'])
