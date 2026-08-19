@@ -20,19 +20,19 @@ def stop(text):
     
         if str(ab) == "STOP":
             iditem = iditem + 1
-            kraj = aa[1].get("name") if isinstance(aa, list) and len(aa) > 1 and aa[1] else None
+            kraj = aa[1].get("name")
             locs.append({"id": iditem, "location": name, "kraj": kraj, "lat": lat, "lon": lon, "type": ab})
     
     return locs
 
 @app.route('/get/route/<place1>/<place2>')
 def route(place1, place2):
-    res1 = requests.get(f"https://localhost/get/stop/{place1}").json()
+    res1 = requests.get(f"https://localhost/get/stop/{place1}", headers=HEADERS).json()
     pos1lat = res1[0].get("lat")
     pos1lon = res1[0].get("lon")
     pos1 = f"{pos1lat},{pos1lon}"
 
-    res2 = requests.get(f"https://localhost/get/stop/{place2}").json()
+    res2 = requests.get(f"https://localhost/get/stop/{place2}", headers=HEADERS).json()
     pos2lat = res2[0].get("lat")
     pos2lon = res2[0].get("lon")
     pos2 = f"{pos2lat},{pos2lon}"
