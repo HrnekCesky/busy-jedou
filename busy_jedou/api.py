@@ -54,20 +54,20 @@ def route(place1, place2, num1, num2):
         
     out = []
     for i in range(len(busy)):
-        busy = busy[i].get("legs")
+        busya = busy[i].get("legs")
 
-        busy_from = busy[i].get("from")
+        busy_from = busya[0].get("from")
         busy_from_name = busy_from.get("name")
         busy_from_scheduledDeparture = busy_from.get("scheduledDeparture")
         busy_from_scheduledDeparture = datetime.datetime.fromisoformat(busy_from_scheduledDeparture.replace("Z", "+00:00"))
         busy_from_scheduledDeparture = busy_from_scheduledDeparture.astimezone(datetime.timezone(datetime.timedelta(hours=2))).isoformat()
 
-        busy_to = busy[i].get("to")
+        busy_to = busya[0].get("to")
         busy_to_name = busy_to.get("name")
         busy_to_scheduledArrival = busy_to.get("scheduledArrival")
         busy_to_scheduledArrival = datetime.datetime.fromisoformat(busy_to_scheduledArrival.replace("Z", "+00:00"))
         busy_to_scheduledArrival = busy_to_scheduledArrival.astimezone(datetime.timezone(datetime.timedelta(hours=2))).isoformat()
 
-        out.append({"from": {"name": busy_from_name, "scheduledDeparture": busy_from_scheduledDeparture}, "to": {"name": busy_to_name, "scheduledArrival": busy_to_scheduledArrival}})
-        
-        return out
+        out.append({"id": i, "from": {"name": busy_from_name, "scheduledDeparture": busy_from_scheduledDeparture}, "to": {"name": busy_to_name, "scheduledArrival": busy_to_scheduledArrival}})
+      
+    return out
