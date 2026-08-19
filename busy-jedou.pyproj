@@ -43,6 +43,8 @@
     <Folder Include="busy_jedou\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="busy_jedou\static\scripts\formsRoute.js" />
+    <Content Include="busy_jedou\static\scripts\formsStop.js" />
     <Content Include="busy_jedou\templates\rozcestnik.html" />
     <Content Include="requirements.txt" />
     <Content Include="busy_jedou\static\content\bootstrap.css" />

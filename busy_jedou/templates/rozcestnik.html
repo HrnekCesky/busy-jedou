@@ -1,8 +1,44 @@
 {% extends "layout.html" %}
 
+{% block head %}
+
+<meta name="viewport" content="width=1024">
+
+    {% endblock %}
+
 {% block content %}
 
-<a href="/get/stop">get stop</a><br />
-<a href="/get/route/search">search route</a><br />
+<div class="veci">
+    <div class="in-content">
+        <h2 class="nadpis">Get A Stop</h2>
+        <form class="FormStop" id="FormStop">
+            <label for="text">Stop Name</label>
+            <input type="text" id="text" name="text" required><br />
+            <button type="submit">Submit</button><br />
+        </form>
+        <div id="outputStop"></div>
+    </div>
 
-{% endblock %}
+    <div class="in-content">
+        <h2 class="nadpis">Get A Route</h2>
+        <form class="FormRoute" id="FormRoute">
+            <label for="from">From</label>
+            <input type="text" id="from" name="from" required>
+            <input type="text" class="numInput" id="num1" name="num1" required><br />
+            <label for="to">To</label>
+            <input type="text" id="to" name="to" required>
+            <input type="text" class="numInput" id="num2" name="num2" required><br />
+            <button type="submit">Submit</button><br />
+        </form>
+        <div id="outputRoute"></div>
+    </div>
+</div>
+
+    {% endblock %}
+
+{% block scripts %}
+
+<script src="/static/scripts/formsStop.js"></script>
+<script src="/static/scripts/formsRoute.js"></script>
+
+    {% endblock %}

@@ -1,15 +1,59 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: black;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    max-width: 600px;
+    margin-top: 3em;
+    max-width: 90%;
+
+}
+
+.veci {
     padding: 2rem;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    background: black;
+    align-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    color: rgb(8, 196, 0);
+}
+
+.in-content {
+    outline: solid;
+    outline-color: rgb(8, 196, 0);
+    outline-offset: 20px;
+    outline-width: 10px;
+    border-radius: 5px;
+    height: 30em;
+    padding: 10px;
+}
+
+.nadpis {
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+.output-card {
+    display: none;
+}
+
+.numInput {
+    width: 5%;
+}
+
+.navbar {
+    min-height: 4em;
+}
+
+.navbar-brand {
+    font-size: 30px;
+}
+
+.navbar-nav {
+    font-size: 20px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */

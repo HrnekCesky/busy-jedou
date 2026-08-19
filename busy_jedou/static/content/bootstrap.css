@@ -765,7 +765,7 @@ pre code {
 
 .container:before,
 .container:after {
-  display: table;
+  display: none;
   content: " ";
 }
 
@@ -775,7 +775,7 @@ pre code {
 
 .container:before,
 .container:after {
-  display: table;
+  display: none;
   content: " ";
 }
 

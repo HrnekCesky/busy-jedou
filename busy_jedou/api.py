@@ -8,18 +8,53 @@ ROUTE_LOOKUP_BASE_URL = "https://api.transitous.org/api/v6"
 HEADERS={"User-Agent": "MyTestApp/1.0"}
 
 @app.route('/get/stop/<text>', methods=['GET'])
+@app.route('/get/stop/<text>/', methods=['GET'])
 def get_stop(text):
     return stop(text)
 
+@app.route('/get/stop', methods=['POST'])
+@app.route('/get/stop/', methods=['POST'])
+def post_stop():
+    text = str(request.form.get('text'))
+
+    res = stop(text)
+    out = ""
+    for i in range(len(res)):
+        resa = res[i]
+        location = resa.get('location')
+        kraj = resa.get('kraj')
+        out = out + (f"<span>{location}, {kraj}</span><br />")
+
+    return out
+
 @app.route('/get/route/<place1>/<num1>/<place2>/<num2>', methods=['GET'])
+@app.route('/get/route/<place1>/<num1>/<place2>/<num2>/', methods=['GET'])
 def get_route(place1, place2, num1, num2):
     return route(place1, place2, num1, num2)
 
-@app.route('/get/stop/', methods=['POST'])
-def stop(text):
-    if request.method == 'POST':
-       text = request.args("text")
+@app.route('/get/route/', methods=['POST'])
+@app.route('/get/route', methods=['POST'])
+def route_post():
+    stop_from = str(request.form.get('from'))
+    stop_to = str(request.form.get('to'))
+    num1 = str(request.form.get('num1'))
+    num2 = str(request.form.get('num2'))
 
+    res = route(stop_from, stop_to, num1, num2)
+    out_route = ""
+    for ii in range(len(res)):
+        resa = res[ii]
+        stopfrom = resa.get('from').get('name')
+        stopfromtime = resa.get('from').get('scheduledDeparture')
+        stopto = resa.get('to').get('name')
+        stoptotime = resa.get('to').get('scheduledArrival')
+        routeid = resa.get('id')
+
+        out_route = out_route + f"<span>{routeid}:</span><span> From: {stopfrom} at {stopfromtime}<br />To: {stopto} at {stoptotime}</span> <br />"
+
+    return out_route
+
+def stop(text):
     response = requests.get(f"{STOP_LOOKUP_BASE_URL}/geocode", headers=HEADERS, params={"text": text, "mode": "BUS"})
 
     locations = response.json()
@@ -40,14 +75,7 @@ def stop(text):
     
     return locs
 
-@app.route('/get/route/', methods=['POST'])
 def route(place1, place2, num1, num2):
-    if request.method == 'POST':
-        place1 = request.args("place1")
-        place2 = request.args("place2")
-        num1 = request.args("num1")
-        num2 = request.args("num2")
-
     num1 = int(num1)
     num2 = int(num2)
     place1 = str(place1)
