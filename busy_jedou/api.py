@@ -8,7 +8,7 @@ ROUTE_LOOKUP_BASE_URL = "https://api.transitous.org/api/v6"
 HEADERS={"User-Agent": "MyTestApp/1.0"}
 
 @app.route('/get/stop/<text>', methods=['GET'])
-def get_route(text):
+def get_stop(text):
     return stop(text)
 
 @app.route('/get/route/<place1>/<num1>/<place2>/<num2>', methods=['GET'])
