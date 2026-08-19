@@ -68,6 +68,6 @@ def route(place1, place2, num1, num2):
         busy_to_scheduledArrival = datetime.datetime.fromisoformat(busy_to_scheduledArrival.replace("Z", "+00:00"))
         busy_to_scheduledArrival = busy_to_scheduledArrival.astimezone(datetime.timezone(datetime.timedelta(hours=2))).isoformat()
 
-        out.append({"id": i, "from": {"name": busy_from_name, "scheduledDeparture": busy_from_scheduledDeparture}, "to": {"name": busy_to_name, "scheduledArrival": busy_to_scheduledArrival}})
+        out.append({"id": i, "data": {"from": {"name": busy_from_name, "scheduledDeparture": busy_from_scheduledDeparture}, "to": {"name": busy_to_name, "scheduledArrival": busy_to_scheduledArrival}}})
       
     return out
