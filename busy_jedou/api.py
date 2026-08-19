@@ -45,5 +45,5 @@ def route(place1, place2, num1, num2):
     id2 = res2[num2].get("stop_id")
     pos2 = {"name": name2, "lat": pos2lat, "lon": pos2lon, "stop_id": id2}
 
-    response = requests.get(f"{BASE_URL}/routing", headers=HEADERS, params={"fromPlace": id1, "toPlace": id2, "transitModes": "BUS"})
-    return {"places": {"departure": pos1, "destination": pos2}, "routing": response.text}
+    response = requests.get(f"{BASE_URL}/routing", headers=HEADERS, params={"fromPlace": id1, "toPlace": id2})
+    return {"places": {"departure": pos1, "destination": pos2}, "routing": response.status_code}
