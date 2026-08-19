@@ -27,12 +27,12 @@ def stop(text):
 
 @app.route('/get/route/<place1>/<place2>')
 def route(place1, place2):
-    res1 = requests.get(f"localhost/get/stop/{place1}").json()
+    res1 = requests.get(f"https://localhost/get/stop/{place1}").json()
     pos1lat = res1[0].get("lat")
     pos1lon = res1[0].get("lon")
     pos1 = f"{pos1lat},{pos1lon}"
 
-    res2 = requests.get(f"localhost/get/stop/{place2}").json()
+    res2 = requests.get(f"https://localhost/get/stop/{place2}").json()
     pos2lat = res2[0].get("lat")
     pos2lon = res2[0].get("lon")
     pos2 = f"{pos2lat},{pos2lon}"
