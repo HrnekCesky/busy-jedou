@@ -16,7 +16,7 @@ def stop(text):
         aa = item.get("areas")
         lat = item.get("lat")
         lon = item.get("lon")
-        stop_id = item.get("stop_id")
+        stop_id = item.get("id")
         ab = item.get("type")
     
         if str(ab) == "STOP":
