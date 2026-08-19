@@ -27,6 +27,9 @@ def stop(text):
 
 @app.route('/get/route/search/<place1>/<num1>/<place2>/<num2>')
 def route(place1, place2, num1, num2):
+    num1 = int(num1)
+    num2 = int(num2)
+
     res1 = stop(place1)
     name1 = res1[num1].get("location") + ", " + res1[num1].get("kraj")
     pos1lat = res1[num1].get("lat")
