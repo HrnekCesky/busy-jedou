@@ -48,17 +48,21 @@ def route(place1, place2, num1, num2):
 
     route = requests.get(f"{ROUTE_LOOKUP_BASE_URL}/plan", headers=HEADERS, params={"fromPlace": id1, "toPlace": id2, "transitModes": "BUS"})
     routejson = route.json()
-    
+
     busy = routejson["itineraries"]
-    busy = busy[0].get("legs")
+        
+    out = []
+    for items in busy:
+        busy = busy[0].get("legs")
 
-    busy_from = busy[0].get("from")
-    busy_from_name = busy_from.get("name")
-    busy_from_scheduledDeparture = busy_from.get("scheduledDeparture")
+        busy_from = busy[0].get("from")
+        busy_from_name = busy_from.get("name")
+        busy_from_scheduledDeparture = busy_from.get("scheduledDeparture")
 
+        busy_to = busy[0].get("to")
+        busy_to_name = busy_to.get("name")
+        busy_to_scheduledArrival = busy_to.get("scheduledArrival")
 
-    busy_to = busy[0].get("to")
-    busy_to_name = busy_to.get("name")
-    busy_to_scheduledArrival = busy_to.get("scheduledArrival")
-
-    return {"from": {"name": busy_from_name, "scheduledDeparture": busy_from_scheduledDeparture}, "to": {"name": busy_to_name, "scheduledArrival": busy_to_scheduledArrival}}
+        out.append({"from": {"name": busy_from_name, "scheduledDeparture": busy_from_scheduledDeparture}, "to": {"name": busy_to_name, "scheduledArrival": busy_to_scheduledArrival}})
+        
+        return out
