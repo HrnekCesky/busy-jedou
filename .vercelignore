@@ -1,0 +1,12 @@
+.git
+.gitignore
+README.md
+*.pyc
+__pycache__
+.env.local
+.env.*.local
+*.venv
+venv/
+runserver.py
+busy-jedou.pyproj
+busy-jedou.slnx

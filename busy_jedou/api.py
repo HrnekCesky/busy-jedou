@@ -20,11 +20,11 @@ def stop(text):
     
         if str(ab) == "STOP":
             iditem = iditem + 1
-            locs.append({"id": iditem, "location": name, "kraj": aa[1].get("name"), "lat": lat, "lon": lon, "type": ab})
+            kraj = aa[1].get("name") if isinstance(aa, list) and len(aa) > 1 and aa[1] else None
+            locs.append({"id": iditem, "location": name, "kraj": kraj, "lat": lat, "lon": lon, "type": ab})
     
-    return locs
+    return jsonify(locs)
 
 @app.route('/get/route/<place1>/<place2>')
 def route(place1, place2):
     return "a"
-    
