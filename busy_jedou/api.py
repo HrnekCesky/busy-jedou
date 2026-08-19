@@ -1,5 +1,6 @@
 from busy_jedou import app
 import requests
+from flask import jsonify
 
 BASE_URL = "https://api.transitous.org/api/v1"
 HEADERS={"User-Agent": "MyTestApp/1.0"}
@@ -20,11 +21,12 @@ def stop(text):
     
         if str(ab) == "STOP":
             iditem = iditem + 1
-            locs.append({"id": iditem, "location": name, "kraj": aa[1].get("name"), "lat": lat, "lon": lon, "type": ab})
+            kraj = aa[1].get("name") if isinstance(aa, list) and len(aa) > 1 and aa[1] else None
+            locs.append({"id": iditem, "location": name, "kraj": kraj, "lat": lat, "lon": lon, "type": ab})
     
-    return locs
+    return jsonify(locs)
 
 @app.route('/get/route/<place1>/<place2>')
 def route(place1, place2):
-    place1 = 
-    
+    # Route lookup not implemented yet — return 501 until implemented.
+    return jsonify({"error": "route lookup not implemented yet"}), 501
