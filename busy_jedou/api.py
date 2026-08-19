@@ -1,6 +1,5 @@
 from busy_jedou import app
 import requests
-from flask import jsonify
 
 BASE_URL = "https://api.transitous.org/api/v1"
 HEADERS={"User-Agent": "MyTestApp/1.0"}
@@ -28,5 +27,4 @@ def stop(text):
 
 @app.route('/get/route/<place1>/<place2>')
 def route(place1, place2):
-    # Route lookup not implemented yet — return 501 until implemented.
-    return jsonify({"error": "route lookup not implemented yet"}), 501
+    return "a"
