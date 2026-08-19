@@ -25,18 +25,8 @@ def stop(text):
     
     return locs
 
-@app.route('/get/route/search/<place1>/<place2>')
-def route(place1, place2):
-    num1 = 0
-    num2 = 0
-    
-    num1a = app.request.args.get('num1')
-    num2a = app.request.args.get('num2')
-    if num1a is not None:
-        num1 = int(num1a)
-    if num2a is not None:
-        num2 = int(num2a)
-
+@app.route('/get/route/search/<place1>/<num1>/<place2>/<num2>')
+def route(place1, place2, num1, num2):
     res1 = stop(place1)
     name1 = res1[num1].get("location") + ", " + res1[num1].get("kraj")
     pos1lat = res1[num1].get("lat")
@@ -47,6 +37,6 @@ def route(place1, place2):
     name2 = res2[num2].get("location") + ", " + res2[num2].get("kraj")
     pos2lat = res2[num2].get("lat")
     pos2lon = res2[num2].get("lon")
-    pos2 = f"{name2}: {pos2lat}, {pos2lon} <br />"
+    pos2 = f"{name2}: {pos2lat}, {pos2lon} <br />"c
 
     return f"pos1: {pos1} pos2: {pos2}"
