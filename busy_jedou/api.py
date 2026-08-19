@@ -17,7 +17,8 @@ def get_route(place1, place2, num1, num2):
 
 @app.route('/get/stop/', methods=['POST'])
 def stop(text):
-    text = request.args("text")
+    if request.method == 'POST':
+       text = request.args("text")
 
     response = requests.get(f"{STOP_LOOKUP_BASE_URL}/geocode", headers=HEADERS, params={"text": text, "mode": "BUS"})
 
@@ -41,10 +42,11 @@ def stop(text):
 
 @app.route('/get/route/', methods=['POST'])
 def route(place1, place2, num1, num2):
-    place1 = request.args("place1")
-    place2 = request.args("place2")
-    num1 = request.args("num1")
-    num2 = request.args("num2")
+    if request.method == 'POST':
+        place1 = request.args("place1")
+        place2 = request.args("place2")
+        num1 = request.args("num1")
+        num2 = request.args("num2")
 
     num1 = int(num1)
     num2 = int(num2)
