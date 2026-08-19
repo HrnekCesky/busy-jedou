@@ -46,5 +46,19 @@ def route(place1, place2, num1, num2):
     id2 = res2[num2].get("stop_id")
     pos2 = {"name": name2, "lat": pos2lat, "lon": pos2lon, "stop_id": id2}
 
-    response = requests.get(f"{ROUTE_LOOKUP_BASE_URL}/plan", headers=HEADERS, params={"fromPlace": id1, "toPlace": id2, "transitModes": "BUS"})
-    return {"places": {"departure": pos1, "destination": pos2}, "routing": response.json()}
+    route = requests.get(f"{ROUTE_LOOKUP_BASE_URL}/plan", headers=HEADERS, params={"fromPlace": id1, "toPlace": id2, "transitModes": "BUS"})
+    routejson = route.json()
+    
+    busy = routejson["itineraries"]
+    busy = busy[0].get("legs")
+
+    busy_from = busy[0].get("from")
+    busy_from_name = busy_from.get("name")
+    busy_from_scheduledDeparture = busy_from.get("scheduledDeparture")
+
+
+    busy_to = busy[0].get("to")
+    busy_to_name = busy_to.get("name")
+    busy_to_scheduledArrival = busy_to.get("scheduledArrival")
+
+    return {"from": {"name": busy_from_name, "scheduledDeparture": busy_from_scheduledDeparture}, "to": {"name": busy_to_name, "scheduledArrival": busy_to_scheduledArrival}}
