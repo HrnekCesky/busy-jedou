@@ -43,6 +43,7 @@
     <Folder Include="busy_jedou\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="busy_jedou\templates\rozcestnik.html" />
     <Content Include="requirements.txt" />
     <Content Include="busy_jedou\static\content\bootstrap.css" />
     <Content Include="busy_jedou\static\content\bootstrap.min.css" />
@@ -66,9 +67,6 @@
     <Content Include="busy_jedou\static\scripts\respond.js" />
     <Content Include="busy_jedou\static\scripts\respond.min.js" />
     <Content Include="busy_jedou\static\scripts\_references.js" />
-    <Content Include="busy_jedou\templates\about.html" />
-    <Content Include="busy_jedou\templates\contact.html" />
-    <Content Include="busy_jedou\templates\index.html" />
     <Content Include="busy_jedou\templates\layout.html" />
   </ItemGroup>
   <ItemGroup>
