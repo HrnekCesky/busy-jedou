@@ -25,18 +25,18 @@ def stop(text):
     
     return locs
 
-@app.route('/get/route/search/<place1>/<place2>')
-def route(place1, place2):
+@app.route('/get/route/search/<place1>?<num1>/<place2>?<num2>')
+def route(place1, num1, place2, num2):
     res1 = stop(place1)
-    name1 = res1[0].get("location") + ", " + res1[0].get("kraj")
-    pos1lat = res1[0].get("lat")
-    pos1lon = res1[0].get("lon")
+    name1 = res1[num1].get("location") + ", " + res1[num1].get("kraj")
+    pos1lat = res1[num1].get("lat")
+    pos1lon = res1[num1].get("lon")
     pos1 = f"{name1}: {pos1lat}, {pos1lon} <br />"
 
     res2 = stop(place2)
-    name2 = res2[0].get("location") + ", " + res2[0].get("kraj")
-    pos2lat = res2[0].get("lat")
-    pos2lon = res2[0].get("lon")
+    name2 = res2[num2].get("location") + ", " + res2[num2].get("kraj")
+    pos2lat = res2[num2].get("lat")
+    pos2lon = res2[num2].get("lon")
     pos2 = f"{name2}: {pos2lat}, {pos2lon} <br />"
 
-    return f"pos1: {pos1}, pos2: {pos2}"
+    return f"pos1: {pos1} pos2: {pos2}"
